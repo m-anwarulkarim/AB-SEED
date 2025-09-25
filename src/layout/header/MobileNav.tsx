@@ -43,7 +43,7 @@ export default function MobileNav() {
   ];
 
   return (
-    <nav className="flex justify-center gap-3 sm:gap-4 flex-nowrap overflow-x-auto px-1 no-scrollbar">
+    <nav className="flex flex-wrap justify-center gap-3 sm:gap-4  overflow-x-auto px-1 no-scrollbar">
       {navItems.map((item, idx) => {
         const isActive = location.pathname === item.to;
 
