@@ -5,7 +5,7 @@ export default function SearchHelp() {
     <div className="flex items-center gap-2 flex-shrink-0">
       {/* 🖥️ : Full button */}
       <button className="hidden sm:flex items-center gap-1 rounded-full border px-3 py-1 text-sm hover:bg-gray-100 transition">
-        <FaCommentDots className="h-5 w-5" />
+        <FaCommentDots className="h-5 w-5 text-gray-600" />
         <span>সাহায্য...</span>
       </button>
 
