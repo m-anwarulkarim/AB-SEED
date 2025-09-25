@@ -1,12 +1,12 @@
 import Feed from "./Layout/Feed/FeedMain";
-import SidebarLeft from "./Layout/LeftSideBar/LeftSideBarMain";
-import SidebarRight from "./Layout/RightSideBer/RightSideBarMain";
+import SidebarLeft from "./LeftSideBar/LeftSideBarMain";
+import SidebarRight from "./RightSideBer/RightSideBarMain";
 
 type MainLayoutProps = {
   children?: React.ReactNode; // future extension
 };
 
-export default function MainLayout({ children }: MainLayoutProps) {
+export default function PopularProductMain({ children }: MainLayoutProps) {
   return (
     <div className="grid grid-cols-12 gap-4 w-full max-w-[1400px] mx-auto mt-4">
       {/* Left Sidebar - only on large screens */}
