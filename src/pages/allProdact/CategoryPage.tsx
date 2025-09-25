@@ -11,7 +11,7 @@ export default function CategoryPage() {
     : products;
 
   return (
-    <div className="min-h-screen bg-green-100 p-6">
+    <div className="min-h-screen bg-green-100 p-2">
       {" "}
       <AllProductHeader />
       {/* হেডার টাইটেল + কাউন্ট * */}
@@ -23,7 +23,7 @@ export default function CategoryPage() {
           মোট {filteredProducts.length} টি প্রোডাক্ট পাওয়া গেছে
         </p>
       </div>
-      {/* প্রোডাক্ট লিস্ট */}
+      {/* product list*/}
       {filteredProducts.length > 0 ? (
         <ProductList products={filteredProducts} />
       ) : (
