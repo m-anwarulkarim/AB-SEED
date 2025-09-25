@@ -1,31 +1,14 @@
-import { FaTrash, FaPlus, FaMinus, FaHeart, FaRegHeart } from "react-icons/fa";
-import { useState } from "react";
-import { Link } from "react-router-dom";
 import { useCart } from "@/components/cart/CartContext";
+import { FaTrash, FaPlus, FaMinus, FaHeart, FaRegHeart } from "react-icons/fa";
 
 export default function CartPage() {
   const { state, dispatch } = useCart();
   const items = state.items;
 
-  const [selectedIds, setSelectedIds] = useState<number[]>([]);
-
-  const toggleSelect = (id: number) => {
-    setSelectedIds((prev) =>
-      prev.includes(id) ? prev.filter((i) => i !== id) : [...prev, id]
-    );
-  };
-
-  const selectAll = () => {
-    setSelectedIds(items.map((item) => item.productId));
-  };
-
-  const deselectAll = () => {
-    setSelectedIds([]);
-  };
-
-  const total = items
-    .filter((item) => selectedIds.includes(item.productId))
-    .reduce((sum, item) => sum + item.offerPrice * item.quantity, 0);
+  const total = items.reduce(
+    (sum, item) => sum + item.offerPrice * item.quantity,
+    0
+  );
 
   return (
     <div className="min-h-screen bg-green-100 p-4">
@@ -36,28 +19,12 @@ export default function CartPage() {
       {items.length === 0 ? (
         <div className="text-center text-gray-600 py-10">
           আপনার কার্ট খালি! <br />
-          <Link to="/all" className="text-green-600 underline">
+          <a href="/all" className="text-green-600 underline">
             পণ্য দেখুন
-          </Link>
+          </a>
         </div>
       ) : (
         <>
-          {/* সিলেকশন অপশন */}
-          <div className="flex justify-between items-center mb-4">
-            <button
-              onClick={selectAll}
-              className="text-sm text-green-700 hover:underline"
-            >
-              ✅ সবগুলো সিলেক্ট করুন
-            </button>
-            <button
-              onClick={deselectAll}
-              className="text-sm text-red-500 hover:underline"
-            >
-              ❌ সব সিলেকশন বাতিল
-            </button>
-          </div>
-
           {/* কার্ট আইটেম */}
           <div className="space-y-4">
             {items.map((item) => (
@@ -65,14 +32,6 @@ export default function CartPage() {
                 key={item.productId}
                 className="bg-white rounded-lg shadow p-4 flex flex-wrap sm:flex-nowrap items-center gap-4 w-full"
               >
-                {/* ✅ Checkbox */}
-                <input
-                  type="checkbox"
-                  checked={selectedIds.includes(item.productId)}
-                  onChange={() => toggleSelect(item.productId)}
-                  className="accent-green-600 scale-125"
-                />
-
                 {/* 📷 Image */}
                 <img
                   src={item.image}
@@ -99,7 +58,7 @@ export default function CartPage() {
                   </p>
                 </div>
 
-                {/* 💰 Price Section → পুরো মাঝখানে */}
+                {/* 💰 Price Section */}
                 <div className="flex flex-col items-center justify-center min-w-[140px] shrink-0 text-center">
                   <p className="text-green-700 font-bold text-sm sm:text-base">
                     ছাড় মূল্য: ৳{item.offerPrice}
@@ -125,22 +84,22 @@ export default function CartPage() {
                   </div>
                 </div>
 
-                {/* 🔢 Quantity */}
-                <div className="flex flex-col items-center gap-2 min-w-[80px] shrink-0">
+                {/* 🔢 Quantity (প্রস্থে) */}
+                <div className="flex flex-row items-center gap-2 min-w-[120px] justify-center">
                   <button
                     onClick={() =>
                       dispatch({ type: "DECREMENT", payload: item.productId })
                     }
-                    className="bg-gray-200 px-2 py-1 rounded hover:bg-gray-300 text-xs sm:text-sm"
+                    className="bg-gray-200 px-2 py-1 rounded hover:bg-gray-300 text-sm"
                   >
                     <FaMinus />
                   </button>
-                  <span className="text-sm">{item.quantity}</span>
+                  <span className="text-sm font-medium">{item.quantity}</span>
                   <button
                     onClick={() =>
                       dispatch({ type: "INCREMENT", payload: item.productId })
                     }
-                    className="bg-gray-200 px-2 py-1 rounded hover:bg-gray-300 text-xs sm:text-sm"
+                    className="bg-gray-200 px-2 py-1 rounded hover:bg-gray-300 text-sm"
                   >
                     <FaPlus />
                   </button>
@@ -149,16 +108,16 @@ export default function CartPage() {
             ))}
           </div>
 
-          {/* ✅ Selected Total + Checkout */}
+          {/* ✅ Total + Checkout */}
           <div className="bg-white rounded-lg shadow p-4 mt-6">
             <div className="flex justify-between items-center mb-4">
-              <span className="text-lg font-semibold">সিলেক্টেড মোট:</span>
+              <span className="text-lg font-semibold">মোট:</span>
               <span className="text-green-700 font-bold text-xl">
                 ৳ {total}
               </span>
             </div>
             <button className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700">
-              ✅ সিলেক্ট করা অর্ডার করুন
+              ✅ অর্ডার করুন
             </button>
           </div>
         </>

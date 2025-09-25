@@ -1,6 +1,6 @@
+import { FaHeart, FaRegHeart, FaTrash } from "react-icons/fa";
 import { useCart } from "@/components/cart/CartContext";
 import type { Product } from "@/types/product";
-import { FaHeart, FaRegHeart, FaTrash } from "react-icons/fa";
 
 interface Props {
   product: Product;
@@ -9,6 +9,23 @@ interface Props {
 
 export default function ProductDetailsModal({ product, onClose }: Props) {
   const { dispatch } = useCart();
+
+  const handleAddToCart = () => {
+    dispatch({
+      type: "ADD_ITEM",
+      payload: {
+        productId: product.id,
+        name: product.name,
+        image: product.image,
+        offerPrice: product.offerPrice,
+        regularPrice: product.regularPrice,
+        quantity: 1,
+        description: product.description,
+        isBranded: product.isBranded,
+        isFavorite: product.isFavorite ?? false,
+      },
+    });
+  };
 
   return (
     <div className="fixed inset-0 bg-gray-500/60 bg-opacity-50 backdrop-blur-sm z-50 flex items-center justify-center">
@@ -61,7 +78,7 @@ export default function ProductDetailsModal({ product, onClose }: Props) {
 
         {/* 🛒 Add to Cart */}
         <button
-          onClick={() => dispatch({ type: "ADD_TO_CART", payload: product })}
+          onClick={handleAddToCart}
           className="w-full bg-green-600 text-white py-2 rounded hover:bg-green-700"
         >
           🛒 কার্ডে যোগ করুন
