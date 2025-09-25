@@ -3,6 +3,7 @@ import MainLayout from "../layout/MainLayout";
 import Error from "@/pages/Error";
 import PopularProductMain from "@/pages/PopularProduct/PopularProductMain";
 import AllProductRoutes from "./AllProduct.Routes";
+import CartPage from "@/pages/orderCart/CartPage";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -12,6 +13,10 @@ export const router = createBrowserRouter([
       {
         Component: PopularProductMain,
         index: true,
+      },
+      {
+        path: "/cart",
+        Component: CartPage,
       },
 
       {
