@@ -21,7 +21,7 @@ export default function ProductDetailsModal({ product, onClose }: Props) {
         regularPrice: product.regularPrice,
         quantity: 1,
         description: product.description,
-        isBranded: product.isBranded,
+        isBranded: product.isBranded ?? false,
         isFavorite: product.isFavorite ?? false,
       },
     });

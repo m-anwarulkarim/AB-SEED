@@ -9,5 +9,5 @@ export interface Product {
   image: string;
   isFavorite?: boolean;
   inStock?: boolean;
-  isBranded?: boolean;
+  isBranded?: false;
 }
