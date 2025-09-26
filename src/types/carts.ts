@@ -8,5 +8,5 @@ export interface CartItem {
   quantity: number;
   description: string;
   isBranded: boolean;
-  isFavorite: boolean;
+  isFavorite?: boolean;
 }
